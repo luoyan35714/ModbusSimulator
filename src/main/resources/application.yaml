@@ -1,0 +1,6 @@
+server:
+  port: 8089
+
+netty:
+  port: 7089
+  bossThread: 1
