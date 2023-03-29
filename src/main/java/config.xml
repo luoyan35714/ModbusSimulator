@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modbusSimulator>
+	
+	<serialConnection>
+		<protocolType>MODBUS_ASCII,MODBUS_RTU,PMB</protocolType>
+		<comPort></comPort>
+		<baudrate></baudrate>
+		<dataBits></dataBits>
+		<stopBits></stopBits>
+		<parity></parity>
+	</serialConnection>
+
+	<tcpConnection>
+		<protocolType>MODBUS_TCP,PMB</protocolType>
+		<port></port>
+	</tcpConnection>
+
+	<modbusDataDefinition>
+		<slaveId></slaveId>
+		<functionCode>01,02,03,04</functionCode>
+		<address></address>
+		<quality></quality>
+		<dataType>SIGNED,UNSIGNED, HEX, Binary, Float, Float_Inverse, Double, Double_Inverse, Long, Long_Inverse</dataType>
+		<return06Exception>true/false</return06Exception>
+
+	</modbusDataDefinition>
+
+	<modbusData0>
+		<autoChange>true/false</autoChange>
+		<random>true/false</random>
+		<autoIncrease>true/false</autoIncrease>
+		<value></value>
+	</modbusData0>
+	<modbusData1>
+		<autoChange></autoChange>
+		<random></random>
+		<autoIncrease></autoIncrease>
+		<value></value>
+	</modbusData1>
+
+</modbusSimulator>
