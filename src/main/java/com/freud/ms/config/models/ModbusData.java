@@ -6,8 +6,9 @@ import lombok.ToString;
 @Data
 @ToString
 public class ModbusData {
-        private Boolean autoChange;
-		private Boolean random;
-		private Boolean autoIncrease;
-		private String value;
+	private Integer index;
+	private Boolean autoChange;
+	private Boolean random;
+	private Boolean autoIncrease;
+	private String value;
 }

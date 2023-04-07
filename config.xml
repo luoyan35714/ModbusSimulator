@@ -25,17 +25,21 @@
 
 	</modbusDataDefinition>
 
-	<modbusData0>
-		<autoChange>true/false</autoChange>
-		<random>true/false</random>
-		<autoIncrease>true/false</autoIncrease>
-		<value></value>
-	</modbusData0>
-	<modbusData1>
-		<autoChange></autoChange>
-		<random></random>
-		<autoIncrease></autoIncrease>
-		<value></value>
-	</modbusData1>
+	<modbusList>
+		<modbusData>
+			<index>0</index>
+			<autoChange>true/false</autoChange>
+			<random>true/false</random>
+			<autoIncrease>true/false</autoIncrease>
+			<value></value>
+		</modbusData>
+		<modbusData>
+			<index>1</index>
+			<autoChange></autoChange>
+			<random></random>
+			<autoIncrease></autoIncrease>
+			<value></value>
+		</modbusData>
+	</modbusList>
 
 </modbusSimulator>
