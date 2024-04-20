@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <modbusSimulator>
 
+	<!-- MODBUS_RTU, MODBUS_ASCII, MODBUS_TCP -->
+	<protocolType>MODBUS_TCP</protocolType>
+
 	<serialConnection>
-		<!-- MODBUS_ASCII,MODBUS_RTU -->
-		<protocolType>MODBUS_RTU</protocolType>
-		<comPort>port 1</comPort>
+		<comPort>COM1 1</comPort>
 		<!-- 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 56000, 57600, 
 			115200 -->
 		<baudrate>300</baudrate>
-		<!-- 7, 8 -->
+		<!-- 5, 6, 7, 8 -->
 		<dataBits>7</dataBits>
-		<!-- 1, 2 -->
+		<!-- 1, 2, 3 -->
 		<stopBits>2</stopBits>
-		<!-- None, Odd, Even -->
-		<parity>None</parity>
+		<!-- NONE, ODD, EVEN, MARK, SPACE -->
+		<parity>NONE</parity>
 	</serialConnection>
 
 	<tcpConnection>

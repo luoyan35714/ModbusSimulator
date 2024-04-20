@@ -1,9 +1,13 @@
 package com.freud.ms.config.models.enums;
 
-public enum SerialConnectionProtocolType {
+public enum ModbusProtocolType {
 
 	// Modbus ASCII
 	MODBUS_ASCII,
+
 	// Modbus RTU
-	MODBUS_RTU;
+	MODBUS_RTU,
+	
+	// Modbus TCP
+	MODBUS_TCP;
 }

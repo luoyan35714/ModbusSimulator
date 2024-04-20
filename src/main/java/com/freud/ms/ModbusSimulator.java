@@ -20,12 +20,9 @@ public class ModbusSimulator {
 		} else if (config.getTcpConnection() != null) {
 			ConfigurationValidation.validateModbusTCPConfig();
 			Integer port = config.getTcpConnection().getPort();
-			if (port != null && port > 0 && port <= 65535) {
-				log.info("TCP IP connection on [" + port + "] is starting.");
-				new SocketServer(port).start();
-			} else {
-				throw new RuntimeException("Please make sure you are using the correct TCP/IP port.");
-			}
+			log.info("TCP IP connection on [" + port + "] is starting.");
+			new SocketServer(port).start();
+
 		} else if (config.getSerialConnection() != null) {
 			ConfigurationValidation.validateModbusSerialConfig();
 			log.info("Serial connection on [" + config.getSerialConnection().getComPort() + "] is starting.");

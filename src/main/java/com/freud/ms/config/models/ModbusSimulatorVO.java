@@ -8,6 +8,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.freud.ms.config.models.enums.ModbusProtocolType;
+
 import lombok.Data;
 
 @Data
@@ -15,10 +17,10 @@ import lombok.Data;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ModbusSimulatorVO {
 
+	private ModbusProtocolType protocolType;
+
 	private SerialConnection serialConnection;
-
 	private TcpConnection tcpConnection;
-
 	private ModbusDataDefinition modbusDataDefinition;
 
 	@XmlElement(name = "modbusData")
