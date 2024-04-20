@@ -1,17 +1,22 @@
 package com.freud.ms.config.models;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import lombok.Data;
 import lombok.ToString;
 
 @Data
 @ToString
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class ModbusDataDefinition {
 
-    	private String slaveId;
-		private String functionCode;
-		private String address;
-		private String quality;
-		private String dataType;
-        private Boolean return06Exception;
+	private Integer slaveId;
+	private String functionCode;
+	private Integer address;
+	private Integer quality;
+	private Boolean return06Exception = false;
 
 }

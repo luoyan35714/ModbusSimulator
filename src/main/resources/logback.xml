@@ -1,0 +1,115 @@
+<configuration>
+
+    <property name="logback.project.name" value="ModbusSimulator"/>
+    <property name="logback.file.path" value="logs"/>
+	<!-- 定义日志输出的格式 -->
+	<property name="logback.pattern"
+		value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n" />
+
+	<!-- 定义一个名为STDOUT的appender，将日志输出到控制台 -->
+	<appender name="STDOUT"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<!-- 使用上面定义的日志格式 -->
+		<encoder>
+			<pattern>${logback.pattern}</pattern>
+		</encoder>
+	</appender>
+
+	<!--debug -->
+	<appender name="FILE-DEBUG"
+		class="ch.qos.logback.core.rolling.RollingFileAppender"
+		additivity="false">
+		<!-- 过滤器，一个appender可以有多个 -->
+		<!-- 阈值过滤，就是log行为级别过滤，info的信息会被打印出来 -->
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<File>${logback.file.path}/${logback.project.name}-debug.log</File>
+		<encoder charset="UTF-8">
+			<pattern>${logback.pattern}</pattern>
+		</encoder>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logback.file.path}/${logback.project.name}-debug.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<maxHistory>10</maxHistory>
+			<totalSizeCap>200MB</totalSizeCap>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>20MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<!--info -->
+	<appender name="FILE-INFO"
+		class="ch.qos.logback.core.rolling.RollingFileAppender"
+		additivity="false">
+		<!-- 过滤器，一个appender可以有多个 -->
+		<!-- 阈值过滤，就是log行为级别过滤，info的信息会被打印出来 -->
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<File>${logback.file.path}/${logback.project.name}-info.log</File>
+		<encoder charset="UTF-8">
+			<pattern>${logback.pattern}</pattern>
+		</encoder>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logback.file.path}/${logback.project.name}-info.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<maxHistory>10</maxHistory>
+			<totalSizeCap>200MB</totalSizeCap>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>20MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<!--error -->
+	<appender name="FILE-ERROR"
+		class="ch.qos.logback.core.rolling.RollingFileAppender"
+		additivity="false">
+		<!-- 过滤器，一个appender可以有多个 -->
+		<!-- 阈值过滤，就是log行为级别过滤，debug及debug以上的信息会被打印出来 -->
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		<File>${logback.file.path}/${logback.project.name}-error.log</File>
+		<encoder charset="UTF-8">
+			<pattern>${logback.pattern}</pattern>
+		</encoder>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${logback.file.path}/${logback.project.name}-error.%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<maxHistory>10</maxHistory>
+			<totalSizeCap>200MB</totalSizeCap>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>20MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<!-- 配置logger，设置日志级别和关联的appender -->
+	<logger name="com.freud.ms" level="INFO">
+		<!-- 将STDOUT和FILE两个appender关联到这个logger -->
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE-DEBUG" />
+		<appender-ref ref="FILE-INFO" />
+		<appender-ref ref="FILE-ERROR" />
+	</logger>
+
+	<!-- 配置root logger，它是所有logger的父级 -->
+	<root level="ERROR">
+		<!-- 默认情况下，只有ERROR级别的日志会被记录 -->
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>

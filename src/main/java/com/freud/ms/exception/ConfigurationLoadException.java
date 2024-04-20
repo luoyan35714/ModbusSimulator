@@ -1,19 +1,21 @@
 package com.freud.ms.exception;
 
-public class ConfigurationLoadException extends Exception{
+public class ConfigurationLoadException extends Exception {
 
-    public ConfigurationLoadException() {
-    }
+	private static final long serialVersionUID = 1L;
 
-    public ConfigurationLoadException(String message) {
-        super(message);
-    }
+	public ConfigurationLoadException() {
+	}
 
-    public ConfigurationLoadException(String message, Throwable cause) {
-        super(message, cause);
-    }
+	public ConfigurationLoadException(String message) {
+		super(message);
+	}
 
-    public ConfigurationLoadException(Throwable cause) {
-        super(cause);
-    }
+	public ConfigurationLoadException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public ConfigurationLoadException(Throwable cause) {
+		super(cause);
+	}
 }
