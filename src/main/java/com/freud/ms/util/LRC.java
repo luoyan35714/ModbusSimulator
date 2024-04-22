@@ -1,5 +1,11 @@
 package com.freud.ms.util;
 
+/**
+ * LRC Util
+ * 
+ * @author Freud
+ *
+ */
 public final class LRC {
 
 	public static String lrc(String str) {

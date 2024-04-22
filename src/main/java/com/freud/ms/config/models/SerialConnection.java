@@ -4,7 +4,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.freud.ms.config.models.base.Connection;
 import com.freud.ms.config.models.enums.SerialConnectionParity;
 
 import lombok.Data;
@@ -16,7 +15,7 @@ import lombok.ToString;
 @ToString
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class SerialConnection extends Connection {
+public class SerialConnection {
 
 	private String comPort;
 	private Integer baudrate;

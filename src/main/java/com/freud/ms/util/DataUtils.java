@@ -214,7 +214,7 @@ public final class DataUtils {
 
 	public static byte[] hexStrToBytes(String hexStr) {
 		if (hexStr.length() % 2 != 0) {
-			throw new IllegalArgumentException("十六进制的字符串长度必须是2的倍数!");
+			throw new IllegalArgumentException("The length of a hexadecimal string must be a multiple of 2!");
 		}
 		byte[] ret = new byte[hexStr.length() / 2];
 		for (int i = 0; i < hexStr.length(); i = i + 2) {

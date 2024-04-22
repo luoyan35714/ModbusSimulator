@@ -16,7 +16,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
-		<!-- JAXB version properties -->
 		<jaxb-api.version>2.3.1</jaxb-api.version>
 		<jaxb-runtime.version>2.3.1</jaxb-runtime.version>
 		<jaxb-xjc.version>2.3.1</jaxb-xjc.version>
@@ -28,6 +27,8 @@
 			<artifactId>lombok</artifactId>
 			<version>1.18.26</version>
 		</dependency>
+
+		<!-- Netty -->
 		<dependency>
 			<groupId>io.netty</groupId>
 			<artifactId>netty-all</artifactId>
@@ -63,6 +64,8 @@
 			<artifactId>jaxb-xjc</artifactId>
 			<version>${jaxb-xjc.version}</version>
 		</dependency>
+		
+		<!-- Log -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -71,7 +74,7 @@
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.2.9</version> <!-- 使用时请检查最新版本 -->
+			<version>1.2.9</version>
 		</dependency>
 
 		<dependency>

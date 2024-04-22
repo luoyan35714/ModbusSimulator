@@ -2,61 +2,135 @@
 <modbusSimulator>
 
 	<!-- MODBUS_RTU, MODBUS_ASCII, MODBUS_TCP -->
-	<protocolType>MODBUS_TCP</protocolType>
+	<protocolType>MODBUS_RTU</protocolType>
 
 	<serialConnection>
-		<comPort>COM1 1</comPort>
-		<!-- 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 56000, 57600, 
-			115200 -->
-		<baudrate>300</baudrate>
-		<!-- 5, 6, 7, 8 -->
-		<dataBits>7</dataBits>
-		<!-- 1, 2, 3 -->
-		<stopBits>2</stopBits>
-		<!-- NONE, ODD, EVEN, MARK, SPACE -->
-		<parity>NONE</parity>
+		<comPort>COM9</comPort>
+		<!-- 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 56000, 57600, 115200 -->
+		<baudrate>9600</baudrate>
+		<!-- 7, 8 -->
+		<dataBits>8</dataBits>
+		<!-- 1, 2 -->
+		<stopBits>1</stopBits>
+		<!-- NONE, ODD, EVEN -->
+		<parity>EVEN</parity>
 	</serialConnection>
-
-	<tcpConnection>
-		<port>8888</port>
-	</tcpConnection>
-
+	
 	<modbusDataDefinition>
-		<!-- [0, 255] -->
-		<slaveId>0</slaveId>
+		<!-- [1, 255] -->
+		<slaveId>1</slaveId>
 		<!-- 01, 02, 03, 04 -->
-		<functionCode>01</functionCode>
+		<functionCode>03</functionCode>
 		<!-- [0, 65535] -->
 		<address>0</address>
 		<!-- [0, 4096] -->
-		<quality>10</quality>
+		<quality>6</quality>
 		<!-- true, false -->
 		<return06Exception>false</return06Exception>
 	</modbusDataDefinition>
 
 	<modbusDataList>
 		<modbusData>
+			<!-- start: function code 01 and 02 config -->
+			<!-- true, false -->
+			<autoChange>true</autoChange>
+			<!-- on, off -->
+			<statusValue>off</statusValue>
+			<!-- end: function code 01 and 02 config -->
+
+			<!-- start: function code 03 and 04 config -->
+			<!-- true, false -->
+			<random>false</random>
+			<!-- true, false -->
+			<autoIncrement>false</autoIncrement>
+			<!-- [-32768, 32767] -->
+			<value>0</value>
+			<!-- end: function code 03 and 04 config -->
+		</modbusData>
+		<modbusData>
+			<!-- start: function code 01 and 02 config -->
 			<!-- true, false -->
 			<autoChange>false</autoChange>
 			<!-- on, off -->
 			<statusValue>off</statusValue>
+			<!-- end: function code 01 and 02 config -->
 
+			<!-- start: function code 03 and 04 config -->
 			<!-- true, false -->
-			<random>false</random>
+			<random>true</random>
 			<!-- true, false -->
-			<autoIncrement>false</autoIncrement>
-			<value>0</value>
-		</modbusData>
-		<modbusData>
-			<!-- true, false -->
-			<autoChange>false</autoChange>
-			<!-- on, off -->
-			<statusValue>on</statusValue>
-
-			<random>false</random>
 			<autoIncrement>false</autoIncrement>
 			<!-- [-32768, 32767] -->
 			<value>0</value>
+			<!-- end: function code 03 and 04 config -->
+		</modbusData>
+		<modbusData>
+			<!-- start: function code 01 and 02 config -->
+			<!-- true, false -->
+			<autoChange>false</autoChange>
+			<!-- on, off -->
+			<statusValue>off</statusValue>
+			<!-- end: function code 01 and 02 config -->
+
+			<!-- start: function code 03 and 04 config -->
+			<!-- true, false -->
+			<random>false</random>
+			<!-- true, false -->
+			<autoIncrement>true</autoIncrement>
+			<!-- [-32768, 32767] -->
+			<value>0</value>
+			<!-- end: function code 03 and 04 config -->
+		</modbusData>
+		<modbusData>
+			<!-- start: function code 01 and 02 config -->
+			<!-- true, false -->
+			<autoChange>false</autoChange>
+			<!-- on, off -->
+			<statusValue>off</statusValue>
+			<!-- end: function code 01 and 02 config -->
+
+			<!-- start: function code 03 and 04 config -->
+			<!-- true, false -->
+			<random>false</random>
+			<!-- true, false -->
+			<autoIncrement>true</autoIncrement>
+			<!-- [-32768, 32767] -->
+			<value>0</value>
+			<!-- end: function code 03 and 04 config -->
+		</modbusData>
+		<modbusData>
+			<!-- start: function code 01 and 02 config -->
+			<!-- true, false -->
+			<autoChange>false</autoChange>
+			<!-- on, off -->
+			<statusValue>off</statusValue>
+			<!-- end: function code 01 and 02 config -->
+
+			<!-- start: function code 03 and 04 config -->
+			<!-- true, false -->
+			<random>false</random>
+			<!-- true, false -->
+			<autoIncrement>true</autoIncrement>
+			<!-- [-32768, 32767] -->
+			<value>0</value>
+			<!-- end: function code 03 and 04 config -->
+		</modbusData>
+		<modbusData>
+			<!-- start: function code 01 and 02 config -->
+			<!-- true, false -->
+			<autoChange>false</autoChange>
+			<!-- on, off -->
+			<statusValue>off</statusValue>
+			<!-- end: function code 01 and 02 config -->
+
+			<!-- start: function code 03 and 04 config -->
+			<!-- true, false -->
+			<random>false</random>
+			<!-- true, false -->
+			<autoIncrement>false</autoIncrement>
+			<!-- [-32768, 32767] -->
+			<value>0</value>
+			<!-- end: function code 03 and 04 config -->
 		</modbusData>
 	</modbusDataList>
 

@@ -8,15 +8,22 @@ import com.freud.ms.server.SocketServer;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Entrance of ModbusSimulator
+ * 
+ * @author Freud
+ *
+ */
 @Slf4j
 public class ModbusSimulator {
 
 	public static void main(String[] args) throws Exception {
 		GlobalConfiguration.load();
 		ModbusSimulatorVO config = GlobalConfiguration.configuration;
+
 		if (config.getTcpConnection() != null && config.getSerialConnection() != null) {
 			throw new RuntimeException(
-					"You can only define one connection(serial connection or tcp connection) in the sametime.");
+					"You can only define one connection(serial or tcp) in the sametime.");
 		} else if (config.getTcpConnection() != null) {
 			ConfigurationValidation.validateModbusTCPConfig();
 			Integer port = config.getTcpConnection().getPort();

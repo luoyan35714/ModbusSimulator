@@ -1,9 +1,15 @@
 package com.freud.ms.util;
 
+/**
+ * CRC16 Util
+ * 
+ * @author Freud
+ *
+ */
 public class CRC16 {
 
 	/**
-	 * 将16进制字符转换为byte
+	 * convert hex string to byte
 	 *
 	 * @param hex
 	 * @return
@@ -14,7 +20,7 @@ public class CRC16 {
 	}
 
 	/**
-	 * 获取高位在前，低位在后的CRC
+	 * CRC - High bit in front, low bit in back
 	 * 
 	 * @param bytes
 	 * @return
@@ -23,14 +29,14 @@ public class CRC16 {
 		String result = getCRCString(bytes);
 
 		byte[] crc = new byte[2];
-//		 高位在前地位在后
+		// High bit in front, low bit in back
 		crc[0] = CRC16.hexToByte(result.substring(0, 2));
 		crc[1] = CRC16.hexToByte(result.substring(2, 4));
 		return crc;
 	}
 
 	/**
-	 * 获取低位在前，高位在后的CRC
+	 * CRC - Low bit in front, high bit in back
 	 * 
 	 * @param bytes
 	 * @return
@@ -39,16 +45,20 @@ public class CRC16 {
 		String result = getCRCString(bytes);
 
 		byte[] crc = new byte[2];
-		// 低位在前，高位在后
+		// Low bit in front, high bit in back
 		crc[0] = CRC16.hexToByte(result.substring(2, 4));
 		crc[1] = CRC16.hexToByte(result.substring(0, 2));
 		return crc;
 	}
 
+	/**
+	 * CRC algorithm
+	 * 
+	 * @param bytes
+	 * @return
+	 */
 	private static String getCRCString(byte[] bytes) {
-		// CRC寄存器全为1
 		int CRC = 0x0000ffff;
-		// 多项式校验值
 		int POLYNOMIAL = 0x0000a001;
 		int i, j;
 		for (i = 0; i < bytes.length; i++) {
@@ -62,7 +72,7 @@ public class CRC16 {
 				}
 			}
 		}
-		// 结果转换为16进制
+		// convert result to hex string
 		String result = Integer.toHexString(CRC).toUpperCase();
 		if (result.length() < 4) {
 			StringBuffer sb = new StringBuffer("0000");

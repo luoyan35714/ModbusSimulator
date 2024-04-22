@@ -2,6 +2,7 @@ package com.freud.ms.protocol;
 
 import java.util.Arrays;
 
+import com.freud.ms.config.GlobalConfiguration;
 import com.freud.ms.util.CRC16;
 import com.freud.ms.util.DataUtils;
 
@@ -24,6 +25,16 @@ public class ModBusRTUParser extends ProtocolHandler {
 
 	@Override
 	public void requestValidation(byte[] request) {
+
+		byte slaveId = request[0];
+		if (!GlobalConfiguration.configuration.getModbusDataDefinition().getSlaveId()
+				.equals(Integer.valueOf(slaveId))) {
+			log.error("Request slaveId not match! configured:["
+					+ GlobalConfiguration.configuration.getModbusDataDefinition().getSlaveId() + "], requested:["
+					+ slaveId + "]");
+			throw new RuntimeException("Request slaveId not match!");
+		}
+
 		// CRC
 		byte[] crcData = Arrays.copyOfRange(request, 0, request.length - 2);
 		byte[] crc = CRC16.getCRC(crcData);
@@ -39,12 +50,10 @@ public class ModBusRTUParser extends ProtocolHandler {
 		int dataIndex = ADU_SLAVE_LENGTH;
 		byte[] requestData = Arrays.copyOfRange(request, dataIndex, request.length - ADU_CRC_LENGTH);
 		byte[] responseData = this.generateResponseData(requestData);
-		byte[] response = new byte[ADU_SLAVE_LENGTH + PDU_FUNCTION_LENGTH + responseData.length + ADU_CRC_LENGTH];
+		byte[] response = new byte[ADU_SLAVE_LENGTH + responseData.length + ADU_CRC_LENGTH];
 
 		// slave
 		response[0] = request[0];
-		// funcation code
-		response[1] = request[1];
 
 		System.arraycopy(responseData, 0, response, dataIndex, responseData.length);
 
@@ -54,6 +63,7 @@ public class ModBusRTUParser extends ProtocolHandler {
 		// CRC
 		response[response.length - 2] = crc[0];
 		response[response.length - 1] = crc[1];
+
 		return response;
 	}
 

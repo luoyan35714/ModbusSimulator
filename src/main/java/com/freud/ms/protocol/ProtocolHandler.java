@@ -16,9 +16,7 @@ public abstract class ProtocolHandler {
 		return this.generateResponse(request);
 	}
 
-	public void requestValidation(byte[] request) {
-		// do nothing
-	}
+	public abstract void requestValidation(byte[] request);
 
 	public abstract int requestLength();
 
@@ -40,28 +38,28 @@ public abstract class ProtocolHandler {
 			if (startAddress >= modbusDataDefinition.getAddress() && (startAddress
 					+ quality) <= (modbusDataDefinition.getAddress() + modbusDataDefinition.getQuality())) {
 				if (functionCode == 0x01) {
-					if (modbusDataDefinition.getFunctionCode() != "01") {
-						errorCode = ModbusExceptionCode.ERROR_01;
-					} else {
+					if (modbusDataDefinition.getFunctionCode().equals("01")) {
 						data = getCoilData(startAddress, quality);
+					} else {
+						errorCode = ModbusExceptionCode.ERROR_01;
 					}
 				} else if (functionCode == 0x02) {
-					if (modbusDataDefinition.getFunctionCode() != "01") {
-						errorCode = ModbusExceptionCode.ERROR_01;
-					} else {
+					if (modbusDataDefinition.getFunctionCode().equals("02")) {
 						data = getCoilData(startAddress, quality);
+					} else {
+						errorCode = ModbusExceptionCode.ERROR_01;
 					}
 				} else if (functionCode == 0x03) {
-					if (modbusDataDefinition.getFunctionCode() != "01") {
-						errorCode = ModbusExceptionCode.ERROR_01;
-					} else {
+					if (modbusDataDefinition.getFunctionCode().equals("03")) {
 						data = getRegisterData(startAddress, quality);
+					} else {
+						errorCode = ModbusExceptionCode.ERROR_01;
 					}
 				} else if (functionCode == 0x04) {
-					if (modbusDataDefinition.getFunctionCode() != "01") {
-						errorCode = ModbusExceptionCode.ERROR_01;
-					} else {
+					if (modbusDataDefinition.getFunctionCode().equals("04")) {
 						data = getRegisterData(startAddress, quality);
+					} else {
+						errorCode = ModbusExceptionCode.ERROR_01;
 					}
 				} else {
 					errorCode = ModbusExceptionCode.ERROR_01;
@@ -118,7 +116,7 @@ public abstract class ProtocolHandler {
 				- modbusDataDefinition.getAddress() + quality); index++) {
 			bytes = DataUtils.combine2ByteArrays(bytes, DataStore.REGISTER_DATA.get(index));
 		}
-		return bytes;
+		return DataUtils.combine2ByteArrays(new byte[] { (byte) bytes.length }, bytes);
 	}
 
 	private byte[] exception(byte functionCode, byte errorCode) {

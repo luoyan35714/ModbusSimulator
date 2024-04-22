@@ -18,6 +18,12 @@ import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Serial server and data handler
+ * 
+ * @author Freud
+ *
+ */
 @Slf4j
 public class SerialServer extends ModbusSimulatorServer implements SerialPortEventListener {
 	private SerialPort serialPort;
@@ -28,17 +34,17 @@ public class SerialServer extends ModbusSimulatorServer implements SerialPortEve
 
 		SerialConnection connection = GlobalConfiguration.configuration.getSerialConnection();
 
-		// 获得串口通信实例
+		// Obtain a serial communication instance
 		CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(connection.getComPort());
-		// 打开串口
-		serialPort = (SerialPort) portIdentifier.open("SerialListener", 2000);
-		// 设置串口通信参数
+		// Open serial port
+		serialPort = (SerialPort) portIdentifier.open("SerialServer", 2000);
+		// Set serial communication parameters
 		serialPort.setSerialPortParams(connection.getBaudrate(), connection.getDataBits(), connection.getStopBits(),
 				connection.getParity().getValue());
-		// 获取串口输入/输出流
+
 		inputStream = serialPort.getInputStream();
 		outputStream = serialPort.getOutputStream();
-		// 添加串口事件监听器
+		// Add a serial event listener
 		serialPort.addEventListener(this);
 		serialPort.notifyOnDataAvailable(true);
 	}
@@ -50,7 +56,7 @@ public class SerialServer extends ModbusSimulatorServer implements SerialPortEve
 				int availableBytes = inputStream.available();
 				byte[] bytes = new byte[availableBytes];
 				inputStream.read(bytes, 0, availableBytes);
-				System.out.println("Read data: " + new String(bytes));
+				log.info("Reuest : " + DataUtils.bytesToHexString(bytes));
 
 				ProtocolHandler dataHandler = null;
 
@@ -72,12 +78,15 @@ public class SerialServer extends ModbusSimulatorServer implements SerialPortEve
 				log.info("response : " + responseStr);
 
 				outputStream.write(response);
+				Thread.sleep(1000);
 				outputStream.flush();
 				log.info("response write back success " + responseStr);
 			} catch (IOException e) {
 				e.printStackTrace();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	}
-
 }

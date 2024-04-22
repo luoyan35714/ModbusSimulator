@@ -100,14 +100,13 @@
 	<!-- 配置logger，设置日志级别和关联的appender -->
 	<logger name="com.freud.ms" level="INFO">
 		<!-- 将STDOUT和FILE两个appender关联到这个logger -->
-		<appender-ref ref="STDOUT" />
 		<appender-ref ref="FILE-DEBUG" />
 		<appender-ref ref="FILE-INFO" />
 		<appender-ref ref="FILE-ERROR" />
 	</logger>
 
 	<!-- 配置root logger，它是所有logger的父级 -->
-	<root level="ERROR">
+	<root>
 		<!-- 默认情况下，只有ERROR级别的日志会被记录 -->
 		<appender-ref ref="STDOUT" />
 	</root>

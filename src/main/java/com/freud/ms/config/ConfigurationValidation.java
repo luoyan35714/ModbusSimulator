@@ -39,22 +39,19 @@ public final class ConfigurationValidation {
 		}
 
 		if (connection.getDataBits() == null
-				|| (!connection.getDataBits().equals(5) 
-						&& !connection.getDataBits().equals(6) 
-						&& !connection.getDataBits().equals(7) 
+				|| (!connection.getDataBits().equals(7) 
 						&& !connection.getDataBits().equals(8))) {
-			throw new RuntimeException("DataBits can only be [5, 6, 7, 8].");
+			throw new RuntimeException("DataBits can only be [7, 8].");
 		}
 
 		if (connection.getStopBits() == null
 				|| (!connection.getStopBits().equals(1) 
-						&& !connection.getStopBits().equals(2)
-						&& !connection.getStopBits().equals(3))) {
-			throw new RuntimeException("StopBits can only be [1, 2, 3].");
+						&& !connection.getStopBits().equals(2))) {
+			throw new RuntimeException("StopBits can only be [1, 2].");
 		}
 
 		if (connection.getParity() == null) {
-			throw new RuntimeException("Please define the Parity by [NONE, ODD, EVEN, MARK, SPACE].");
+			throw new RuntimeException("Please define the Parity by [NONE, ODD, EVEN].");
 		}
 
 		ConfigurationValidation.validateModbusDataDefinition();
@@ -88,9 +85,9 @@ public final class ConfigurationValidation {
 			throw new RuntimeException("Please define the modbus data definition.");
 		}
 
-		if (dataDefinition.getSlaveId() == null || dataDefinition.getSlaveId() < 0
+		if (dataDefinition.getSlaveId() == null || dataDefinition.getSlaveId() < 1
 				|| dataDefinition.getSlaveId() > 255) {
-			throw new RuntimeException("SlaveId can only be a number between [0, 255]");
+			throw new RuntimeException("SlaveId can only be a number between [1, 255]");
 		}
 
 		if (StringUtils.isEmpty(dataDefinition.getFunctionCode()) 
