@@ -1,6 +1,6 @@
 ## Modbus Simulator
 
-ModbusSimulator is a java based modbus protocol simulator server that can run on multiple platforms such as Windows, Linux and Macos.
+ModbusSimulator is a java based modbus protocol server simulator that can run on multiple platforms such as Windows, Linux and Macos.
 
 
 ### How to config
