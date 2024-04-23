@@ -14,9 +14,9 @@ ModbusSimulator is a java based modbus protocol server simulator that can run on
 - serialConnection: Serial connection configuration
     - comPort: String, `COM*` in windows, `/dev/tty*` in linux
 	- baudrate: `[300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 56000, 57600, 115200]`
-	- dataBits: `7, 8`
+	- dataBits: `[7, 8]`
 	- stopBits: `[1, 2]`
-	- parity: `[NONE, ODD, EVEN, MARK, SPACE]`
+	- parity: `[NONE, ODD, EVEN]`
 - tcpConnection: TCP connection configuration
     - port: TCP Port
 - modbusDataDefinition
