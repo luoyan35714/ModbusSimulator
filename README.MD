@@ -36,7 +36,7 @@ ModbusSimulator is a java based modbus protocol server simulator that can run on
 
 ### How to start 
 
-#### local start
+#### Local start
 
 + setup the `config.yaml`
 
