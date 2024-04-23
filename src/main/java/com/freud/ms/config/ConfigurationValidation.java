@@ -102,9 +102,9 @@ public final class ConfigurationValidation {
 				|| dataDefinition.getAddress() > 65535) {
 			throw new RuntimeException("Address can only be a number between [0, 65535]");
 		}
-		if (dataDefinition.getQuality() == null || dataDefinition.getQuality() < 0
+		if (dataDefinition.getQuality() == null || dataDefinition.getQuality() < 1
 				|| dataDefinition.getQuality() > 4096) {
-			throw new RuntimeException("Quality can only be a number between [0, 4096]");
+			throw new RuntimeException("Quality can only be a number between [1, 4096]");
 		}
 
 	}
