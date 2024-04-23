@@ -21,3 +21,6 @@ hs_err_pid*
 **.settings
 **.classpath
 /logs/
+
+.DS_Store
+**.DS_Store
