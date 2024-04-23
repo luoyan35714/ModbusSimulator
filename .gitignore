@@ -20,7 +20,8 @@ hs_err_pid*
 **.project
 **.settings
 **.classpath
+**.factorypath
+
 /logs/
 
-.DS_Store
 **.DS_Store
