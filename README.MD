@@ -68,7 +68,7 @@ $ docker run -it -d -p 8888:8888 --name modbus-simulator modbus-simulator:v1.0
 
 # mount out log files
 $ mkdir ms_logs
-$ docker run -it -d -p 8888:8888 -v $(pwd)/test_logs:/app/logs --name modbus-simulator modbus-simulator:v1.0
+$ docker run -it -d -p 8888:8888 -v $(pwd)/ms_logs:/app/logs --name modbus-simulator modbus-simulator:v1.0
 ```
 
 
