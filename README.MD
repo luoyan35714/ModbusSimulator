@@ -29,10 +29,10 @@ ModbusSimulator is a java based modbus protocol server simulator that can run on
 	- return06Exception: `[true, false]` - If it's true, the response will always be 86 exception.
 - modbusDataList
     - modbusData: The number of `modbusData` must be consistent with `modbusDataDefinition.quality`.
-    	- autoChange: `[true, false]` - If it's true, the `statusValue` will change every minute. Only works for function code 01 and 02.
+    	- autoChange: `[true, false]` - If it's true, the `statusValue` will change every sec. Only works for function code 01 and 02.
     	- statusValue: `[on, off]` - Coils value, `on` means 1, `off` means 0 in binary. Only works for function code 01 and 02.
-    	- random: `[true, false]` If it's true, the `value` will change randomly every minute. Only works for function code 03 and 04.
-    	- autoIncrement: `[true, false]` If it's true, the `value` will change add one every minute. Only works for function code 03 and 04.
+    	- random: `[true, false]` If it's true, the `value` will change randomly every second. Only works for function code 03 and 04.
+    	- autoIncrement: `[true, false]` If it's true, the `value` will change add one every second. Only works for function code 03 and 04.
     	- value: `[-32768, 32767]` - Register value. Only works for function code 03 and 04.
 
 

@@ -10,7 +10,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-@Data()
+@Data
 @EqualsAndHashCode(callSuper = false)
 @ToString
 @XmlRootElement

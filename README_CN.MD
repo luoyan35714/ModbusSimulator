@@ -2,47 +2,47 @@
 
 ## Modbus Simulator
 
-ModbusSimulator is a java based modbus protocol server simulator that can run on multiple platforms such as Windows, Linux and Macos.
+ModbusSimulator 是一个基于Java编写的Modbus协议模拟器，可以运行在不同的操作系统，包括Windows, Macos 和 Linux
 
 
-### How to config
+### 配置
 
-+ Configuration file name is `config.xml`
-+ `config_sample.xml`: Here's a sample that shows all of the configuration parameters you can use. 
++ 核心配置文件 `config.xml`
++ `config_sample.xml`: 一个包含了所有可用配置的样例文件
 
 
-### Configuration parameters
+### 配置参数
 - protocolType: `[MODBUS_RTU, MODBUS_ASCII, MODBUS_TCP]`
-- serialConnection: Serial connection configuration
-    - comPort: String, `COM*` in windows, `/dev/tty*` in linux
+- serialConnection: 串口链接配置
+    - comPort: String类型, 在windows下请配置为`COM*` in windows, 在Linux下请配置为`/dev/tty*`
 	- baudrate: `[300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 56000, 57600, 115200]`
 	- dataBits: `[7, 8]`
 	- stopBits: `[1, 2]`
 	- parity: `[NONE, ODD, EVEN]`
-- tcpConnection: TCP connection configuration
-    - port: TCP Port
+- tcpConnection: TCP 链接配置
+    - port: TCP 端口
 - modbusDataDefinition
-	- slaveId: `[1, 255]` - Addiotional Address in modbus.
-	- functionCode: `[01, 02, 03, 04]` - Function code in modbus.
-	- address: `[0, 65535]` - Start address
-	- quality: `[1, 4096]` - quality of the coils(function code 01 and 02) or register(function code 03 and 04)
-	- return06Exception: `[true, false]` - If it's true, the response will always be 86 exception.
+	- slaveId: `[1, 255]` - 单元标志
+	- functionCode: `[01, 02, 03, 04]` - 功能码
+	- address: `[0, 65535]` - 开始地址
+	- quality: `[1, 4096]` - 线圈的数量(功能码01或者02) 或 寄存器的数量(功能码03或者04)
+	- return06Exception: `[true, false]` - 设置是否返回错误，当设置为true，所有的返回都是Exception
 - modbusDataList
-    - modbusData: The number of `modbusData` must be consistent with `modbusDataDefinition.quality`.
-    	- autoChange: `[true, false]` - If it's true, the `statusValue` will change every minute. Only works for function code 01 and 02.
-    	- statusValue: `[on, off]` - Coils value, `on` means 1, `off` means 0 in binary. Only works for function code 01 and 02.
-    	- random: `[true, false]` If it's true, the `value` will change randomly every minute. Only works for function code 03 and 04.
-    	- autoIncrement: `[true, false]` If it's true, the `value` will change add one every minute. Only works for function code 03 and 04.
-    	- value: `[-32768, 32767]` - Register value. Only works for function code 03 and 04.
+    - modbusData: `modbusData`的数量必须与`modbusDataDefinition.quality`的数量保持一致
+    	- autoChange: `[true, false]` - 当设置为true的时候, `statusValue`每秒钟会改变一次，只在功能码为01或02的时候生效.
+    	- statusValue: `[on, off]` - 线圈的值, `on`代表二进制1, `off` 代表二进制0. 只在功能码为01或02的时候生效..
+    	- random: `[true, false]` - 当设置为true的时候, `value`每秒钟会改变一次，只在功能码为03或04的时候生效
+    	- autoIncrement: `[true, false]` - 当设置为true的时候, `value`每秒钟会改变一次，只在功能码为03或04的时候生效
+    	- value: `[-32768, 32767]` - 寄存器的值，只在功能码为03或04的时候生效
 
 
-### How to start 
+### 如何启动
 
-#### Local start
+#### 本地启动
 
-+ setup the `config.yaml`
++ 配置 `config.yaml`
 
-+ start the server
++ 启动server
 ```bash
 $ mvn clean install
 $ java -jar target/ModbusSimulator.jar
@@ -50,17 +50,17 @@ $ java -jar target/ModbusSimulator.jar
 
 + log: `logs/*.log` files
 
-#### Docker start
+#### Docker 启动
 
-+ setup the `config.yaml`
++ 配置 `config.yaml`
 
-+ build docker image
++ 构建 docker image
 ```bash
 $ mvn clean install
 $ docker build -t modbus-simulator:v1.0 .
 ```
 
-+ start server
++ 启动 server
 ```bash
 # Normal test
 $ docker run -it --rm --name modbus-simulator modbus-simulator:v1.0
@@ -74,9 +74,9 @@ $ docker run -it -d -p 8888:8888 -v $(pwd)/ms_logs:/app/logs --name modbus-simul
 ```
 
 
-### Serial Port
+### 串口
 
-Please extract following files from `references/rxtx-2.2pre2-bins.zip` into the `$JAVA_HOME\bin` folder before using the serial connection.
+当时用串口链接的时候，需要把`references/rxtx-2.2pre2-bins.zip`文件解压到`$JAVA_HOME\bin`中
 - `rxtxSerial.dll` - (for windows)
 - `librxtxSerial.so & librxtxParallel.so` - (for linux)
 - `librxtxSerial.jnilib` - (for mac)
